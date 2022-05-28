@@ -10,12 +10,14 @@ app.use(express.static(__dirname + "/public"));
 
 io.on("connection", (socket) => {
   // console.log("Usuario conectado!");
-  socket.emit("Welcome Message", {
-    msg: "Welcome to the Server!",
-    date: new Date(),
-  });
-  socket.on("client message", (data) => {
+  // socket.emit("Welcome Message", {
+  //   msg: "Welcome to the Server!",
+  //   date: new Date(),
+  // });
+  socket.on("message-to-server", (data) => {
     console.log(data);
+    // socket.emit("message-from-server", data);
+    io.emit("message-from-server", data);
   });
 });
 
