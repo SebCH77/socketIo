@@ -9,7 +9,11 @@ const io = new Server(server);
 app.use(express.static(__dirname + "/public"));
 
 io.on("connection", (socket) => {
-  console.log("Un usuario se ha conectado!");
+  // console.log("Usuario conectado!");
+  socket.emit("Welcome Message", {
+    msg: "Welcome to the Server!",
+    date: new Date(),
+  });
 });
 
 server.listen(8080, () => console.log("Server run on port :8080"));
