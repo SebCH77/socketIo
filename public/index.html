@@ -19,6 +19,12 @@
       socket.on("Welcome Message", (data) => {
         console.log("Server emmit something =>", data);
       });
+      setTimeout(() => {
+        socket.emit("client message", {
+          msg: "cliente",
+          name: "Sebastian",
+        });
+      }, 2000);
     </script>
   </body>
 </html>

@@ -14,6 +14,9 @@ io.on("connection", (socket) => {
     msg: "Welcome to the Server!",
     date: new Date(),
   });
+  socket.on("client message", (data) => {
+    console.log(data);
+  });
 });
 
 server.listen(8080, () => console.log("Server run on port :8080"));
