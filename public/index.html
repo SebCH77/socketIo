@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Socket Server</title>
 
+    <!-- CSS only -->
     <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
-      integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
       crossorigin="anonymous"
     />
   </head>
@@ -17,21 +18,16 @@
     <hr />
 
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"
-      integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg=="
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"
+      integrity="sha512-9mpsATI0KClwt+xVZfbcf2lJ8IFBAwsubJ6mI3rtULwyM3fBmQFzj0It4tGqxLOGQwGfJdk/G+fANnxfq9/cew=="
       crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     ></script>
 
     <script>
-      // Conexión con el socket server
       const socket = io("http://localhost:8080");
-
-      /// Para emitir
-      // socket.emit('mensaje-to-server', { data });
-
-      // Para escuchar
-      socket.on("mensaje-from-server", (data) => {
-        // callback a ejecutar
+      socket.on("current-bands", (data) => {
+        console.log("Bands =>>", data);
       });
     </script>
   </body>
