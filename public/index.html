@@ -2,73 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minichat</title>
+    <title>Socket Server</title>
+
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+      integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK"
       crossorigin="anonymous"
     />
   </head>
   <body class="container">
-    <h1 class="mt-5">Minichat</h1>
+    <h1 class="mt-5">Acceso denegado</h1>
     <hr />
 
-    <form id="miFormulario">
-      <div class="row">
-        <div class="col-8">
-          <input type="text" id="txtMensaje" placeholder="Mensaje" class="form-control" />
-        </div>
-        <div class="col-4">
-          <button type="submit" class="btn btn-primary">Enviar</button>
-        </div>
-      </div>
-    </form>
-
-    <div class="row">
-      <div class="col">
-        <ul id="misMensajes" class="mt-2"></ul>
-      </div>
-    </div>
-
     <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"
-      integrity="sha512-9mpsATI0KClwt+xVZfbcf2lJ8IFBAwsubJ6mI3rtULwyM3fBmQFzj0It4tGqxLOGQwGfJdk/G+fANnxfq9/cew=="
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.1/socket.io.js"
+      integrity="sha512-vGcPDqyonHb0c11UofnOKdSAt5zYRpKI4ow+v6hat4i96b7nHSn8PQyk0sT5L9RECyksp+SztCPP6bqeeGaRKg=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer"
     ></script>
+
     <script>
-      const socket = io("https://react-socket-server-seb.herokuapp.com/");
+      // Conexión con el socket server
+      const socket = io("http://localhost:8080");
 
-      //Referencias elementos del DOM
-      const formulario = document.querySelector("#miFormulario");
-      const mensajes = document.querySelector("#misMensajes");
-      const txtMensaje = document.querySelector("#txtMensaje");
+      /// Para emitir
+      // socket.emit('mensaje-to-server', { data });
 
-      formulario.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const nuevoMensaje = txtMensaje.value;
-        socket.emit("message-to-server", {
-          text: nuevoMensaje,
-        });
+      // Para escuchar
+      socket.on("mensaje-from-server", (data) => {
+        // callback a ejecutar
       });
-
-      socket.on("message-from-server", (data) => {
-        mensajes.innerHTML += `<li>${data.text}</li>`;
-      });
-
-      // socket.on("Welcome Message", (data) => {
-      //   console.log("Server emmit something =>", data);
-      // });
-
-      // setTimeout(() => {
-      //   socket.emit("client message", {
-      //     msg: "cliente",
-      //     name: "Sebastian",
-      //   });
-      // }, 2000);
     </script>
   </body>
 </html>
