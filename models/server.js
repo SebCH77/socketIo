@@ -31,7 +31,9 @@ class Server {
     this.configurarSockets();
 
     //Init server
-    this.server.listen(this.port, () => console.log("Server run on port :", this.port));
+    this.server.listen(this.port, () => {
+      console.log("Server run on port :", this.port);
+    });
   }
 }
 
